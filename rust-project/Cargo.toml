@@ -1,0 +1,14 @@
+[package]
+name = "rust-project"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[lib]
+name = "my_library"
+path = "src/lib.rs"
+
+[[bin]]
+name = "my_binary"
+path = "src/main.rs"

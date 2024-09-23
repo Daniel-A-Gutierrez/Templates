@@ -1,0 +1,24 @@
+---
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+		<script>
+			import flamethrower from 'flamethrower-router';
+			flamethrower({ prefetch: 'visible', log: true, pageTransitions: false });
+		</script>
+		<link href="flexboxgrid-scss/flexboxgrid.min.css"/>
+	</head>
+	<body>
+		<slot></slot>
+	</body>
+</html>
+
+<style lang="scss" is:global>
+	@use "pico";
+	@import "/node_modules/@rewdy/flexboxgrid-sass/flexboxgrid.scss";
+</style>

@@ -1,0 +1,14 @@
+[package]
+name = "api_server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[lib]
+name = "my_library"
+path = "src/lib.rs"
+
+[[bin]]
+name = "server"
+path = "src/main.rs"
