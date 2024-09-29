@@ -2,7 +2,6 @@
 Comes preconfigured with : 
 * Astro
 * Svelte
-* Astro/image
 * Lightningcss
 * picocss
 * @rewdy/flexboxgrid-sass

@@ -1,0 +1,22 @@
+{
+    "tasks": {
+        "dev": "deno run --cached-only --allow-net=127.0.0.1:8000 --allow-read=./ --watch src/main.ts",
+        "test": "deno test --allow-net=localhost --allow-read=./",
+        "start": "deno run --allow-net --watch --cached-only main.ts ",
+        "install": "deno install --entrypoint src/main.ts"
+    },
+    "imports": {
+        "./": "./",
+        "/": "./",
+        "hono": "jsr:@hono/hono@^4.6.3",
+        "@std/assert": "jsr:@std/assert@^1.0.6",
+        "src/": "./src/"
+    },
+    "fmt": {
+        "lineWidth": 120,
+        "indentWidth": 4,
+        "singleQuote": true
+    },
+    "nodeModulesDir": true,
+    "vendor": false
+}
