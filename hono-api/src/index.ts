@@ -7,18 +7,17 @@ const app = new Hono();
 
 const schema = z.object({asdf : z.string()});
 const validator1 = zValidator('query', schema);
-const validator2 = zValidator('json', schema);
+//const validator2 = zValidator('json', schema);
 
 const route = app.get(  '/hello', 
                         validator1, 
-                        validator2,
                         (ctx) => 
                         { 
                             const query = ctx.req.valid('query');
                             return ctx.text(`Hello ${query.asdf}`);
                         });
 
-Deno.serve({ port: 8000, hostname: "127.0.0.1" }, app.fetch);
+//Deno.serve({ port: 8000, hostname: "127.0.0.1" }, app.fetch);
 
 export type AppType = typeof route;
 /*

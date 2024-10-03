@@ -3,7 +3,7 @@ deno's documentation seems to be out of date, particularly pertaining to deno.js
 
 deno install vs deno add is confusing, add is typical "put this in node modules" behavior,
 install is for globally executable scripts 
-JK it has various behaviors. Also the docs arent out of date, theyre different for 2.0 .
+JK it has various behaviors. Also the docs arent out of date, my Deno is.
 
 OK deno apparently isnt a package manager and has a stupid philosophy so 
 deno install -A --unstable --import-map=https://deno.land/x/trex/import_map.json -n trex --no-check https://deno.land/x/trex/cli.ts
@@ -62,3 +62,43 @@ Just have to make sure --cache-only is ALWAYS used.
 ### Package Management Revised
 ```deno add``` to add packages
 ```deno task dev``` to run in development mode
+
+### Deno with Vite
+https://github.com/anatoo/vite-deno-plugin/tree/main/examples/react
+Seems to be possible. 
+Would be useful for doing a fullstack application with deno.
+https://github.com/denoland/deno-vite-plugin/blob/main/README.md
+
+### Hono + Astro
+https://nuro.dev/posts/how_to_use_astro_with_hono/#binding-hono-to-astro
+Seems doable. Use hono for the strongly typed api,
+use astro for the frontend stuff.
+
+### TRPC 
+this seems like the way to go.
+https://github.com/WebDevSimplified/trpc-express-comparison/blob/main/trpc/server/routers/index.ts
+
+https://github.com/jlalmes/trpc-openapi
+
+### Hono's RPC Client
+https://hono.dev/docs/guides/rpc
+This seems almost nicer than tRPC in many ways. Nice.
+
+### File based routing
+Im not entirely sold on this. On one hand it saves alot of boiler plate. But on the other hand, building up the routes at server start means you can't trace types as easily. I feel like it wouldnt work with the RPC Client. How could it?
+
+### Library
+I think by separating the logic out from the api endpoints to the library, a neighbor client application (astro) could skip the network and use the api directly. In this case it should be fine so long as 
+we're not doing any mutation.
+
+### Adding HTTPS modules
+https://github.com/denoland/deno/issues/23216
+Adding modules from https is currently not supported. 
+I'll have to manually do the import map then do deno install.
+
+### Continuing on Deno 2.0 rc 7 
+Very unstable but id rather have a version that matches the docs.
+
+### Package management issues
+Turns out a bug i have using zValidator was caused by mismatched versions between
+hono and zod and zValidator- zvalidator is only on npm so thats probably the problem. have to use the npm versions for the rest now.
