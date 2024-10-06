@@ -1,0 +1,32 @@
+[
+	{
+		"userId": 0,
+		"text": "buy a gun.",
+		"itemId": 0
+	},
+	{
+		"userId": 0,
+		"text": "buy another gun.",
+		"itemId": 1
+	},
+	{
+		"userId": 0,
+		"text": "yeehaw.",
+		"itemId": 2
+	},
+	{
+		"userId": 0,
+		"text": "Buy 7 bananas.",
+		"itemId": 3
+	},
+	{
+		"userId": 0,
+		"text": "Buy 7 bananas.",
+		"itemId": 4
+	},
+	{
+		"userId": 0,
+		"text": "Buy 7 bananas.",
+		"itemId": 5
+	}
+]

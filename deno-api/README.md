@@ -102,3 +102,16 @@ Very unstable but id rather have a version that matches the docs.
 ### Package management issues
 Turns out a bug i have using zValidator was caused by mismatched versions between
 hono and zod and zValidator- zvalidator is only on npm so thats probably the problem. have to use the npm versions for the rest now.
+
+
+Version: Deno 2.0.0-rc.10
+
+Creating a todo app with hono and zod validator uncovered a problem with type inference in deno. 
+Couldn't find a way to resolve it, so I remade the project with npm and node - no type inference issues.
+A repository containing the files is [here](https://github.com/Daniel-A-Gutierrez/Templates).
+This seems to sometimes fix itself, I'm not entirely sure why. 
+I'll update this when I can find out the exact steps to reproduce it. 
+
+![Image](https://github.com/user-attachments/assets/46fe8220-dfe0-4caf-aa13-3374e705a191)
+
+![Image](https://github.com/user-attachments/assets/9755362a-37bb-491c-9058-c261541a69f4)
