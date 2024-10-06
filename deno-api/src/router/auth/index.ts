@@ -1,20 +1,19 @@
 import { Hono, Env } from "hono";
 import { crypto } from "@std/crypto";
-import { UserDB, type User } from '/database/database.ts';
+import { UserDB, type User , GetNextUserId} from '/database/database.ts';
 import {createFactory} from 'hono/factory';
 import Login from './login.ts';
 import Logout from './logout.ts';
 import NewUser from './newuser.ts';
 import {encodeHex} from '@std/encoding';
 import { getCookie } from 'hono/cookie';
-
 //basic bearer auth
-interface AuthInfoEnv extends Env
+export interface AuthInfoEnv extends Env
 {
     Variables : {session : Session}
 }
 
-type Session = 
+export type Session = 
 {
     key : string, 
     userId : number, 
@@ -25,7 +24,7 @@ const sessions = new Map<string, Session>();
 const factory = createFactory<AuthInfoEnv>();
 
 //normally youd find the max userID but aloedb doesnt support that.
-let nextUserId = await UserDB.count(); 
+let nextUserId = await GetNextUserId(); 
 
 async function login(username : string, password : string) : Promise<Session | null>
 {
@@ -78,7 +77,7 @@ const bearerAuthValidator = factory.createMiddleware( async (ctx, next) =>
     const key = getCookie(ctx, 'session-key');
     if (key == null) return ctx.text('No Session-Key Header Present', 401);
     const session = sessions.get(key);
-    if (session == null) return ctx.text('Invalid Session Key');
+    if (session == null) return ctx.text('Invalid Session Key', 401);
     const sessionAge = Temporal.Now.instant().since(session.start);
     if ( Temporal.Duration.compare ( sessionAge, 
             Temporal.Duration.from({hours : 24}))> 0 )
@@ -93,7 +92,6 @@ const bearerAuthValidator = factory.createMiddleware( async (ctx, next) =>
 
 
 export {factory, login, createUser, logout}; 
-export type {AuthInfoEnv};
 
 const router = new Hono<AuthInfoEnv>().route('/', Login)
                                       .route('/', NewUser)

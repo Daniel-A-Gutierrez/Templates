@@ -15,7 +15,7 @@ const router = new Hono<AuthInfoEnv>().put('/login', loginValidator, async (ctx)
         const session = await login(username, password);
         if (session == null) { return ctx.text("Authentication Failed.", 401);}
         setCookie(ctx, 'session-key', session.key, {httpOnly : true}); // use secure if you support https
-        return ctx.text('');
+        return ctx.text('', 200);
     });
 
 export default router;

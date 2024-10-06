@@ -15,7 +15,7 @@ DELETE
 auth will authenticate and then include the userID in the context through
 middleware.
 */
-const deleteParamSchema = z.object({itemId : z.number()});
+const deleteParamSchema = z.object({itemId : z.string()});
 const deleteValidator = zValidator('param', deleteParamSchema);
 
 function DeleteTodo(userid : number, itemid : number) : Promise<TodoItem | null>
@@ -30,9 +30,11 @@ function DeleteTodo(userid : number, itemid : number) : Promise<TodoItem | null>
 const router = new Hono<TodoEnv>().delete( '/:itemId', deleteValidator, 
     async (ctx) => 
     {
-        const userId = 0;
+        const userId = ctx.var.userId;
         const {itemId} = ctx.req.valid('param');
-        return ctx.json(await DeleteTodo(userId, itemId));
+        const result = await DeleteTodo(userId, parseInt(itemId));
+        if (result == null) {return ctx.json({message : "Item Not Found"}, 404)}
+        return ctx.json(result);
     });
 
 export default router;

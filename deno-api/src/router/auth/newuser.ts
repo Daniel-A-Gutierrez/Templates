@@ -7,7 +7,7 @@ import { Hono } from 'hono';
 
 const newUserSchema = z.object({username : z.string(), password : z.string()});
 const newUserValidator = zValidator('json', newUserSchema);
-const router = new Hono<AuthInfoEnv>().put('/new-user', newUserValidator, async (ctx) => 
+const router = new Hono<AuthInfoEnv>().put('/newuser', newUserValidator, async (ctx) => 
 {
     const {username, password} = ctx.req.valid('json');
     const new_user = await createUser(username,password);

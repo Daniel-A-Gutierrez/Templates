@@ -1,4 +1,4 @@
-import {TodoDB, TodoItem} from "/database/database.ts";
+import {TodoDB, TodoItem, GetNextTodoId} from "/database/database.ts";
 import {zValidator} from '@hono/zod-validator';
 import {z} from "zod";
 import { Hono } from 'hono';
@@ -16,7 +16,10 @@ middleware.
 const schema = z.object({text : z.string()});
 const validator = zValidator('json', schema);
 
-let itemCounter = await TodoDB.count();
+//let itemCounter = await TodoDB.count(); //should be max of ID but db doesnt support that.
+
+let itemCounter = await GetNextTodoId() + 1;
+
 function CreateTodo(userId : number, text : string)  : Promise<TodoItem>
 {
     const x = itemCounter;

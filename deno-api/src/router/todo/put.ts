@@ -32,7 +32,7 @@ const router = new Hono<TodoEnv>().put( '/', updateValidator,
     async (ctx) => 
     {
         const {itemId, value} = ctx.req.valid('json');
-        const userId = 0;
+        const userId = ctx.var.userId;
         return ctx.json(await UpdateTodo(userId, itemId, value));
     })
 

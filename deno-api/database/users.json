@@ -4,5 +4,11 @@
 		"userId": 0,
 		"salt": "517de11b-e9ad-4cad-960c-ee021cb4b7f5",
 		"pwHash": "1fea1a2b29203768da1f01c5e6ef1c71d313dd27df745c8af8ba658109e03286"
+	},
+	{
+		"username": "test",
+		"userId": 1,
+		"salt": "e631bd9a-a9cc-4b5a-a55e-2164165c9295",
+		"pwHash": "4d7c6b910aaad8adcc263d7c5501bd85f5baf4e417eb80ad033a6f40c784f64b"
 	}
 ]

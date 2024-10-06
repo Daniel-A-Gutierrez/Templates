@@ -1,8 +1,7 @@
 {
     "tasks": {
-        "dev": "deno run --cached-only --allow-net=127.0.0.1:8000 --allow-read=./ --watch src/main.ts",
-        "client": "deno run --cached-only --allow-net=127.0.0.1:8000 --allow-read=./ --watch src/test_client.ts",
-        "test": "deno test --allow-net=localhost --allow-read=./",
+        "dev": "deno run --cached-only --allow-net=127.0.0.1:8000 --allow-read=./ --allow-write=./ --watch src/main.ts",
+        "test": "deno test --allow-net=127.0.0.1:8000 --allow-read=./ --allow-write=./",
         "start": "deno run --allow-net --watch --cached-only main.ts "
     },
     "imports": {
